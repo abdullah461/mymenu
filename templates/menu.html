@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@700&display=swap" rel="stylesheet">
+    <title>Menu</title>
+<style>
+    input{
+        margin-bottom: 10px;
+        padding: 10px;
+        display: block;
+        width: 70%;
+    }
+    .close{
+        height: 20px;
+        width: 20px;
+        border: solid black 0.5px;
+        border-radius: 0 5px 0 0;
+        position: absolute;
+        right: -1px;
+        top: -1px;
+        cursor: pointer;
+    }
+
+    /* items */
+    .item{
+        padding-inline-start: 0%;
+        padding: 3rem;
+    }
+    .item li{
+        margin-left: 1rem;
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+    }
+    .item div img{
+        height: 30px;
+        width: 30px;
+        
+    }
+</style>
+
+</head>
+<body style="background-color: white;">
+    
+    <!-- Header -->
+    <nav>
+        <div class="logo" style="margin-left: 20px; margin-top: 20px;">
+            <a href="" style="font-family: 'Tangerine', cursive; font-size: 45px; text-decoration: none; color: black;">Mymenu</a>
+        </div>
+    </nav>
+    <!-- Header stops -->
+
+    <!-- Menu section -->
+    <div class="bodyBackground" style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+        
+        <!-- insert button -->
+        <button style="background-color: white; border: none; margin-bottom: 20px;
+         box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+         cursor: pointer;" id="btn">+</button>
+        <!-- insert button ends -->
+
+        <!-- menu frame -->
+        <div class="menu" style="height: 600px; width: 600px; background-color: white;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        ">
+        <ul class="item">
+                       
+        </ul>
+
+    </div>
+        <!-- menu frame ends -->
+
+        <!-- insert fields pop-up -->
+        <div class="pop-up"
+        style="
+        background: rgba(0, 0, 0, 0.3);
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        ">
+        <form class="popup-content" style="
+            height: 300px;
+            width: 350px;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            position: relative;
+            ">
+            <img src="../static/reject.png" alt="close" class="close">
+            <input type="text" placeholder="Title" class="title">
+            <input type="text" placeholder="Description" class="description">
+            <input type="text" placeholder="Price" class="price">
+            <input type="file" class="image">
+            <button type="submit">submit</button>            
+        </form>
+        </div>
+
+        <!-- pop-up ends -->
+    </div>
+
+    <script>
+        // dom elements
+        var itemForm = document.querySelector('.popup-content')
+        var itemList = document.querySelector('.item')
+        
+        var titleInput = document.querySelector('.title')
+        var descInput = document.querySelector('.description')
+        var priceInput = document.querySelector('.price')
+        var imageInput = document.querySelector('.image')
+
+        let items = JSON.parse(localStorage.getItem('items')) || [] 
+
+        itemForm.addEventListener('submit', (e)=>{
+            e.preventDefault()
+
+            const titleValue = titleInput.value
+            const descValue = descInput.value
+            const priceValue = priceInput.value
+
+            if (titleValue == ''){
+                return
+            }
+
+            const item = {
+                id: new Date().getTime(),
+                title: titleValue,
+                description: descValue,
+                price: priceValue
+            }
+            items.push(item)
+        localStorage.setItem('items', JSON.stringify(items))
+
+        createItem(item)
+
+        itemForm.reset()
+
+        titleInput.focus()
+        descInput.focus()
+        priceInput.focus()
+     
+        })
+
+        itemList.addEventListener('click' , (e)=>{
+            if(e.target.classList.contains('remove-task')){
+                const itemid = e.target.closest('li').id
+
+                removeItem(itemid)
+            }
+        })
+
+        function createItem(item){
+            const itemEl = document.createElement('li')
+            itemEl.setAttribute('id', item.id)
+
+            const itemElMarkup = `
+            <!-- items  -->
+            <li id="1">
+                <div>
+                    <h6>${item.title}</h6>
+                    <p>${item.description}</p> 
+                </div>
+                <div>
+                    <p>${item.price}</p>
+                    <img src="../static/close.png" alt="" class = "remove-task">
+
+                </div>
+                
+            </li>
+            `
+        itemEl.innerHTML = itemElMarkup
+
+        itemList.appendChild(itemEl)
+        }
+
+        function removeItem(itemid){
+            items = items.filter((item)=> item.id != parseInt(itemid))
+
+            localStorage.setItem('items', JSON.stringify(items))
+            document.getElementById(itemid).remove()
+        }
+        
+        // <img src="../static/pizza.jpg" alt="item-image">
+        
+        // functionality to pop-up the filds for input
+        
+        document.getElementById("btn").addEventListener("click", function(){
+            document.querySelector(".pop-up").style.display = "flex"
+        })
+        document.querySelector(".close").addEventListener("click", function(){
+            document.querySelector(".pop-up").style.display = "none"
+        })      
+
+        
+    </script>
+</body>
+</html>

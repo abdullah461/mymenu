@@ -1,0 +1,47 @@
+statement of problem:
+As a vendor who sales things,
+it is important that anyone that wants
+to patronise you should know what you offer
+and the price for what you offer in order to make his/her choice of what to purchase.
+
+AIMS:	[MVP]
+this system aims to seamlessly help vendors to present their services to their customers digitally
+
+OBJECTIVE:
+the objectives to:
+	-enable customer view vendors menu digitally
+	-enable customer view the photo of what the vendor offers
+	-enable customer access the menu address using barcode.
+
+SIGNIFICANCE:
+this system will help the vendor easily present it menu to customer thats close and remote,
+and it will help customers know what vendors offer and its
+price plus photo which will convice the customers to patronise the vendors product.
+
+SCOPE:
+it will cover building a system which vendor can register an account, create a menu and add description and photos to the menu, delete the menu, update the menu.
+and users to view menu.
+
+SYSTEM ANALYSIS AND DESIGN:
+i am using AGile method for this project, which is combination of both iterative and incremental model of segmenting a product
+into components and modules where on each iteration a working model of a component is delivered.
+
+NON_FUNCTIONAL REQUIREMENT:
+	Pages:
+	-
+
+FUNCTIONAL REQUIREMENT:
+In this project there are two types of user:
+
+VENDOR:
+	-can register an account
+	-can create a menu
+	-can edit a menu
+	-can delete a menu
+
+CUSTOMER:
+	-should be able to access a desired menu via vendors link
+	-should be able view the menu with resposiveness on both PC and Mobile view
+	-should be able to view the picture of the product
+
+ENTITY RELATIONSHIP DIAGRAM:
