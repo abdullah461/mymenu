@@ -15,6 +15,7 @@ itemForm.addEventListener('submit', (e)=>{
     const titleValue = titleInput.value
     const descValue = descInput.value
     const priceValue = priceInput.value
+    const imgValue = imageInput.value
 
     if (titleValue == ''){
         return
@@ -24,7 +25,8 @@ itemForm.addEventListener('submit', (e)=>{
         id: new Date().getTime(),
         title: titleValue,
         description: descValue,
-        price: priceValue
+        price: priceValue,
+        image: imgValue
     }
     items.push(item)
 localStorage.setItem('items', JSON.stringify(items))
@@ -36,6 +38,7 @@ itemForm.reset()
 titleInput.focus()
 descInput.focus()
 priceInput.focus()
+imageInput.focus()
 
 })
 
@@ -61,7 +64,7 @@ function createItem(item){
         <div>
             <p>${item.price}</p>
             <img src="../static/close.png" alt="" class = "remove-task">
-
+            <img id="preview" src="${item.image}" alt="thumbnail">
         </div>
         
     </li>
