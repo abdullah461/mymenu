@@ -73,7 +73,6 @@ itemList.appendChild(itemEl)
 
 function removeItem(itemid){
     items = items.filter((item)=> item.id != parseInt(itemid))
-
     localStorage.setItem('items', JSON.stringify(items))
     document.getElementById(itemid).remove()
 }
