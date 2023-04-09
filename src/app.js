@@ -52,19 +52,18 @@ function createItem(item){
     itemEl.setAttribute('id', item.id)
 
     const itemElMarkup = `
-    <!-- items  -->
-    <li id="1">
+    
+   
         <div>
             <h6>${item.title}</h6>
-            <p>${item.description}</p> 
+            <p>${item.price}</p>
         </div>
         <div>
-            <p>${item.price}</p>
+            <p>${item.description}</p> 
             <img src="../static/close.png" alt="" class = "remove-task">
-
         </div>
         
-    </li>
+    
     `
 itemEl.innerHTML = itemElMarkup
 

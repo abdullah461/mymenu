@@ -89,18 +89,25 @@ section .container form .close{
 }
 
 /* items */
-.item{
+.container .menu .item{
     padding-inline-start: 0%;
     padding: 3rem;
 }
-.item li{
+.container .menu .item li{
     margin-left: 1rem;
     width: 50%;
-    display: flex;
+    /* display: flex; */
     align-items: center;
     justify-content: space-between;
     margin-bottom: 1rem;
 }
+.container .menu .item li div:nth-child(1){
+    justify-content: space-between;
+}
+.container .menu .item li div{
+    display: flex;
+}
+
 .item div img{
     height: 30px;
     width: 30px;
