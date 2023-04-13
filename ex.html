@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>User Profile</title>
+</head>
+<body>
+	<h1>User Profile</h1>
+	<form>
+		<label for="username">Username:</label>
+		<input type="text" id="username" name="username"><br><br>
+		<label for="photo">Photo:</label>
+		<input type="file" id="photo" name="photo"><br><br>
+		<input type="button" value="Save" onclick="saveUserProfile()">
+	</form>
+	<br><br>
+	<div id="userProfile"></div>
+	
+    
+    
+    <script>
+        function saveUserProfile() {
+  // Get the user's name and photo
+  const username = document.getElementById("username").value;
+  const photo = document.getElementById("photo").files[0];
+
+  // Create a new object to store the user profile data
+  const userProfile = {username: username, photo: photo};
+
+  // Save the user profile data to local storage
+  localStorage.setItem("userProfile", JSON.stringify(userProfile));
+
+  // Display the user profile on the web
+  displayUserProfile();
+}
+
+function displayUserProfile() {
+  // Get the user profile data from local storage
+  const userProfile = JSON.parse(localStorage.getItem("userProfile"));
+
+  // Create an image element to display the user's photo
+  const img = document.createElement("img");
+  img.src = URL.createObjectURL(userProfile.photo);
+  img.alt = "User Photo";
+
+  // Create a paragraph element to display the user's name
+  const p = document.createElement("p");
+  p.innerText = "Username: " + userProfile.username;
+
+  // Append the image and paragraph elements to the userProfile div
+  const userProfileDiv = document.getElementById("userProfile");
+  userProfileDiv.appendChild(img);
+  userProfileDiv.appendChild(p);
+}
+
+
+    </script>
+</body>
+</html>

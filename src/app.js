@@ -5,9 +5,12 @@ var itemList = document.querySelector('.item')
 var titleInput = document.querySelector('.title')
 var descInput = document.querySelector('.description')
 var priceInput = document.querySelector('.price')
-var imageInput = document.querySelector('.image')
+// const imageInput = document.querySelector('.image')
+
+
 
 let items = JSON.parse(localStorage.getItem('items')) || [] 
+
 
 itemForm.addEventListener('submit', (e)=>{
     e.preventDefault()
@@ -15,6 +18,7 @@ itemForm.addEventListener('submit', (e)=>{
     const titleValue = titleInput.value
     const descValue = descInput.value
     const priceValue = priceInput.value
+    const imageValue = imageInput
 
     if (titleValue == ''){
         return
@@ -24,18 +28,21 @@ itemForm.addEventListener('submit', (e)=>{
         id: new Date().getTime(),
         title: titleValue,
         description: descValue,
-        price: priceValue
+        price: priceValue,
+        image: imageValue
     }
+
+    
     items.push(item)
-localStorage.setItem('items', JSON.stringify(items))
+    localStorage.setItem('items', JSON.stringify(items))
 
-createItem(item)
+    createItem(item)
+    itemForm.reset()
 
-itemForm.reset()
-
-titleInput.focus()
-descInput.focus()
-priceInput.focus()
+    titleInput.focus()
+    descInput.focus()
+    priceInput.focus()
+    imageInput.focus()
 
 })
 
@@ -50,6 +57,19 @@ itemList.addEventListener('click' , (e)=>{
 function createItem(item){
     const itemEl = document.createElement('li')
     itemEl.setAttribute('id', item.id)
+    itemEl.append('i', item.image)
+    function img(i){
+        const imageInput = document.querySelector('.image')
+                imageInput.addEventListener('change', function() {
+                    const reader = new FileReader();
+                    reader.addEventListener('load', () =>{
+                        i = reader.result;
+                        // style.backgroundImage = `url(${uploaded_image})`;
+                    });
+                    reader.readAsDataURL(this.files[0]); 
+                })
+            }
+
 
     const itemElMarkup = `
     
@@ -59,7 +79,8 @@ function createItem(item){
             <p>${item.price}</p>
         </div>
         <div>
-            <p>${item.description}</p> 
+            <p>${item.description}</p>
+            <img src="${item.image}" alt="" class = "">
             <img src="../static/close.png" alt="" class = "remove-task">
         </div>
         
