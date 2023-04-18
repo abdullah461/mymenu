@@ -5,7 +5,7 @@ var itemList = document.querySelector('.item')
 var titleInput = document.querySelector('.title')
 var descInput = document.querySelector('.description')
 var priceInput = document.querySelector('.price')
-// const imageInput = document.querySelector('.image')
+const imageInput = document.querySelector('.image')
 
 
 
@@ -18,7 +18,8 @@ itemForm.addEventListener('submit', (e)=>{
     const titleValue = titleInput.value
     const descValue = descInput.value
     const priceValue = priceInput.value
-    const imageValue = imageInput
+    const imageValue = imageInput.value
+    
 
     if (titleValue == ''){
         return
@@ -42,7 +43,7 @@ itemForm.addEventListener('submit', (e)=>{
     titleInput.focus()
     descInput.focus()
     priceInput.focus()
-    imageInput.focus()
+   
 
 })
 
@@ -57,20 +58,7 @@ itemList.addEventListener('click' , (e)=>{
 function createItem(item){
     const itemEl = document.createElement('li')
     itemEl.setAttribute('id', item.id)
-    itemEl.append('i', item.image)
-    function img(i){
-        const imageInput = document.querySelector('.image')
-                imageInput.addEventListener('change', function() {
-                    const reader = new FileReader();
-                    reader.addEventListener('load', () =>{
-                        i = reader.result;
-                        // style.backgroundImage = `url(${uploaded_image})`;
-                    });
-                    reader.readAsDataURL(this.files[0]); 
-                })
-            }
-
-
+    
     const itemElMarkup = `
     
    
@@ -107,4 +95,3 @@ document.getElementById("btn").addEventListener("click", function(){
 document.querySelector(".close").addEventListener("click", function(){
     document.querySelector(".pop-up").style.display = "none"
 })      
-

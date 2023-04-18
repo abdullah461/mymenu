@@ -25,7 +25,8 @@
     <script>
         const image_input = document.querySelector('#image_input')
         var uploaded_image = '';
-
+        
+        function myfunction(){
         image_input.addEventListener('change', function() {
             const reader = new FileReader();
             reader.addEventListener('load', () =>{
@@ -34,6 +35,11 @@
             });
             reader.readAsDataURL(this.files[0]); 
         })
+        }
+
+
+        myfunction()
+        
     </script>
 </body>
 </html>
