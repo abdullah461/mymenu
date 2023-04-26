@@ -11,7 +11,7 @@ const imageInput = document.querySelector('.image')
 
 let items = JSON.parse(localStorage.getItem('items')) || [] 
 
-
+// submit form
 itemForm.addEventListener('submit', (e)=>{
     e.preventDefault()
 
@@ -55,6 +55,7 @@ itemList.addEventListener('click' , (e)=>{
     }
 })
 
+// create item
 function createItem(item){
     const itemEl = document.createElement('li')
     itemEl.setAttribute('id', item.id)
@@ -68,6 +69,7 @@ function createItem(item){
         </div>
         <div>
             <p>${item.description}</p>
+            
             <img src="${item.image}" alt="" class = "">
             <img src="../static/close.png" alt="" class = "remove-task">
         </div>
