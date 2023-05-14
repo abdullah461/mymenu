@@ -5,7 +5,7 @@ var itemList = document.querySelector('.item')
 var titleInput = document.querySelector('.title')
 var descInput = document.querySelector('.description')
 var priceInput = document.querySelector('.price')
-const imageInput = document.querySelector('.image')
+
 
 
 
@@ -18,8 +18,6 @@ itemForm.addEventListener('submit', (e)=>{
     const titleValue = titleInput.value
     const descValue = descInput.value
     const priceValue = priceInput.value
-    const imageValue = imageInput.value
-    
 
     if (titleValue == ''){
         return
@@ -29,8 +27,7 @@ itemForm.addEventListener('submit', (e)=>{
         id: new Date().getTime(),
         title: titleValue,
         description: descValue,
-        price: priceValue,
-        image: imageValue
+        price: priceValue
     }
 
     
@@ -43,14 +40,12 @@ itemForm.addEventListener('submit', (e)=>{
     titleInput.focus()
     descInput.focus()
     priceInput.focus()
-   
 
 })
 
 itemList.addEventListener('click' , (e)=>{
     if(e.target.classList.contains('remove-task')){
         const itemid = e.target.closest('li').id
-
         removeItem(itemid)
     }
 })
@@ -61,17 +56,14 @@ function createItem(item){
     itemEl.setAttribute('id', item.id)
     
     const itemElMarkup = `
-    
-   
+
         <div>
             <h6>${item.title}</h6>
             <p>${item.price}</p>
         </div>
         <div>
             <p>${item.description}</p>
-            
-            <img src="${item.image}" alt="" class = "">
-            <img src="../static/close.png" alt="" class = "remove-task">
+            <img src="../src/close.png" alt="" class = "remove-task">
         </div>
         
     
@@ -86,8 +78,6 @@ function removeItem(itemid){
     localStorage.setItem('items', JSON.stringify(items))
     document.getElementById(itemid).remove()
 }
-
-// <img src="../static/pizza.jpg" alt="item-image">
 
 // functionality to pop-up the filds for input
 

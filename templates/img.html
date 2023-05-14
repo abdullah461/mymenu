@@ -7,38 +7,86 @@
     <title>Document</title>
 
     <style>
-        #display_image{
-            width: 375px;
-            height: 211px;
-            border: 1px solid black;
-            background-position: center;
-            background-size: cover;
+       body{
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            height: 150px;
         }
     </style>
 </head>
 <body>
-    
-    <input type="file" id="image_input" accept="image/png, image/jpg">
-    <div id="display_image"></div>
-    
-    
-    <script>
-        const image_input = document.querySelector('#image_input')
-        var uploaded_image = '';
-        
-        function myfunction(){
-        image_input.addEventListener('change', function() {
-            const reader = new FileReader();
-            reader.addEventListener('load', () =>{
-                uploaded_image = reader.result;
-                document.querySelector('#display_image').style.backgroundImage = `url(${uploaded_image})`;
-            });
-            reader.readAsDataURL(this.files[0]); 
-        })
+      <div>
+        <form class="item" class="form">
+            <input type="text" placeholder="title" id="text">
+            <input type="file" id="image_input" accept="image/png, image/jpg">
+            <button type="submit">submit</button>            
+        </form>
+        <div>
+            <ul class="itemlist"></ul>
+        </div>
+      </div>
+<script>
+    const iForm = document.querySelector('.form')
+    const image_input = document.querySelector('#image_input')
+    const text = document.getElementById('#text')
+    const itemList = document.querySelector('.itemlist')
+
+    iForm.addEventListener('submit', (e)=>{
+        e.preventDefault()
+
+        const title = text.value
+
+        const item = {
+            title: title
         }
 
+        
+    })
 
-        myfunction()
+    function createItem(item){
+    const itemEl = document.createElement('li')
+    const itemElMarkup = `
+        <div>
+            <h2>${item.title}</h2>
+        </div>`
+    itemEl.innerHTML = itemElMarkup
+    itemlist.appendChild(itemEl)
+}
+
+
+
+
+
+    // image_input.addEventListener('change', function() {
+    // const reader = new FileReader();
+    // reader.readAsDataURL(this.files[0]); 
+            
+    // reader.addEventListener('load', () =>{
+    //            const img = reader.result;
+    //             // document.querySelector('#display_image').style.backgroundImage = `url(${uploaded_image})`;
+                
+    //             const itemEl = document.createElement('div')
+    //             img.appendChild(itemEl)
+    //             itemEl.innerHTML = itemElMarkup
+                
+    //             const itemElMarkup = `
+    //             	<div>
+    //                 <img src = '${img}' alt=''>     
+    //                 </div>
+    //         `
+            
+           
+    //         });
+            
+           
+    //     });
         
     </script>
 </body>
