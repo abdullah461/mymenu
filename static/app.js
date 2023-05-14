@@ -65,8 +65,6 @@ function createItem(item){
             <p>${item.description}</p>
             <img src="../src/close.png" alt="" class = "remove-task">
         </div>
-        
-    
     `
 itemEl.innerHTML = itemElMarkup
 
