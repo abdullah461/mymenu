@@ -7,8 +7,6 @@ var descInput = document.querySelector('.description')
 var priceInput = document.querySelector('.price')
 
 
-
-
 let items = JSON.parse(localStorage.getItem('items')) || [] 
 
 // submit form
